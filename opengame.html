@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>جاري فتح Tower Jumper...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script type="text/javascript">
+        // إعداداتك
+        const APP_SCHEME = "towerjumper://open"; // رابط فتح اللعبة
+        const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.geniegames.towerjumper"; // رابط المتجر
+
+        // محاولة فتح التطبيق
+        function openApp() {
+            // استخدام window.location.replace لمنع زر الرجوع من العودة لهذه الصفحة
+            window.location.replace(APP_SCHEME);
+
+            // إعداد مهلة للتحويل إلى المتجر إذا لم يفتح التطبيق
+            setTimeout(function() {
+                // التحقق من أن الصفحة لا تزال مفتوحة (لم يتم فتح التطبيق)
+                // إذا تم فتح التطبيق، سيتوقف تنفيذ هذا الكود لأن المتصفح يكون في الخلفية
+                if (!document.hidden) {
+                    window.location.replace(PLAY_STORE_URL);
+                }
+            }, 1000); // المهلة: 1000 مللي ثانية (ثانية واحدة)
+        }
+
+        // تشغيل الدالة عند تحميل الصفحة
+        window.onload = openApp;
+    </script>
+    <p>جاري تحويلك... إذا لم يتم فتح التطبيق تلقائيًا، <a href="javascript:openApp()">اضغط هنا</a>.</p>
+</body>
+</html>
